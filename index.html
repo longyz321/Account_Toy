@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<script type="text/javascript" src="js/clock.js" ></script>
+		<script>
+			var now = new Date();
+
+			function getDate() {
+				var day = now.getDate();
+				var month = now.getMonth() + 1;
+				var year = now.getFullYear();
+				var myDiv = $("#div_id").attr("date")
+				var date_of_now = year + "" + month + "" + day;
+				alert(date_of_now);
+				$("#data_area").append('<div date="' + date_of_now + '"></div>')
+			}
+
+			function myFunction() {
+				var x;
+				var d = new Date().getDay();
+				switch(d) {
+					case 0:
+						x = "Today it's Sunday";
+						break;
+					case 1:
+						x = "Today it's Monday";
+						break;
+					case 2:
+						x = "Today it's Tuesday";
+						break;
+					case 3:
+						x = "Today it's Wednesday";
+						break;
+					case 4:
+						x = "Today it's Thursday";
+						break;
+					case 5:
+						x = "Today it's Friday";
+						break;
+					case 6:
+						x = "Today it's Saturday";
+						break;
+				}
+				document.getElementById("demo").innerHTML = x;
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<div id="clock"></div>
+		<div id="div_id" class="div_class" date="170111">
+			div
+		</div>
+		<button onclick="getDate();">divButton</button>
+		<input class="date" value="" />
+		<div id="data_area"></div>
+
+		<p>点击下面的按钮来显示今天是周几：</p>
+
+		<button onclick="myFunction()">点击这里</button>
+
+		<p id="demo"></p>
+		<div id="localtime"></div>  
+	</body>
+
+</html>
