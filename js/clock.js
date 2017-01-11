@@ -31,7 +31,7 @@
 
 	function tick() {
 		var nowDate = new Date();
-		document.getElementById("clock").innerHTML = showLocale(nowDate);
+		$("#clock").html(showLocale(nowDate));
 		window.setTimeout("tick()", 1000);
 	}
 	tick();

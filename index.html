@@ -6,11 +6,15 @@
 		<title></title>
 		<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
 		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+		<!--
+        	作者：longyz321@foxmail.com
+        	时间：2017-01-11
+        	描述：这里只是一个clock
+        -->
 		<script type="text/javascript" src="js/clock.js" ></script>
 		<script>
-			var now = new Date();
-
 			function getDate() {
+				var now = new Date();
 				var day = now.getDate();
 				var month = now.getMonth() + 1;
 				var year = now.getFullYear();
@@ -48,7 +52,14 @@
 				}
 				document.getElementById("demo").innerHTML = x;
 			}
-
+			
+			function accountCarrier(){
+				$("#account_carrier").children("div").each(
+					function(){
+						alert($(this).attr("account_carrier_name"));
+					}
+				)
+			}
 		</script>
 	</head>
 
@@ -65,8 +76,33 @@
 
 		<button onclick="myFunction()">点击这里</button>
 
+		<button onclick="accountCarrier()">点击这里</button>
+
 		<p id="demo"></p>
-		<div id="localtime"></div>  
+		<div id="localtime"></div> 
+		
+		<!--
+        	作者：longyz321@foxmail.com
+        	时间：2017-01-11
+        	描述：
+        		写到这里,打算用div#account_carrier存各种储存载体
+        		并用switch语句提取使用
+        		但是并没有想好怎么提取,提取之后用做什么
+        		
+        		而且div#account_carrier是否存储当前载体的剩余数额并没有确定
+        		所有打算 : 先做个原型,整理思路然后再继续吧.
+        -->
+		<div id="account_carrier">
+			<div account_carrier_id="0" account_carrier_name="储蓄卡"></div>
+			<div account_carrier_id="1" account_carrier_name="信用卡"></div>
+			<div account_carrier_id="2" account_carrier_name="现金"></div>
+			<div account_carrier_id="3" account_carrier_name="支付宝"></div>
+			<div account_carrier_id="4" account_carrier_name="微信"></div>
+			<div account_carrier_id="5" account_carrier_name="蚂蚁花呗"></div>
+			<div account_carrier_id="6" account_carrier_name="京东白条"></div>
+			<div account_carrier_id="7" account_carrier_name="分期乐"></div>
+			<div account_carrier_id="7" account_carrier_name="结款"></div>
+		</div>
 	</body>
 
 </html>
