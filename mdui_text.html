@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 <html>
-
+<!--
+	作者：longyz321@foxmail.com
+	时间：2017-01-13
+	TODO：
+		把mdui整體看一遍,然後整理一遍.使用上菜單,彈出層
+-->
 	<head>
 		<meta charset="UTF-8">
-		<script type="text/javascript" src="js/jquery-3.1.1.min.js" ></script>
+		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="js/mdui.js"></script>
 		<script type="text/javascript" src="js/mdui.min.js"></script>
 		<link rel="stylesheet" href="css/mdui.css" />
 		<link rel="stylesheet" href="css/mdui.min.css" />
 		<title></title>
 		<script>
-			function addAccountStorager(obj){
-				console.log(obj.attr("id"));
-//				alert($("div#data_storager").children("storager").length);
-//				alert($("input.account_storager_input").attr("input_name"));
-//				var newStoragerId = null;
-//				var newStoragerName = null;
-//				$("div#data_storager").append(
-//					'<storager storager_id="' + newStoragerId + '" storager_name="' + newStoragerName + '" storager_quantity="0" storager_type="0"></storager>'
-//				);
+			$(document).ready(function() {
+				$("input[enter_submit]").keyup(function(evnet) {
+					if(evnet.keyCode == '13') {
+						var temporary_str = $(this).attr("enter_submit");
+						var temporary_id = $("div[" + temporary_str + "]").children(temporary_str).length;
+						var temprorary_name = $(this).val();
+						switch(temporary_str) {
+							case "account_storager":
+								accountStoragerInnerFunction(temporary_id, temporary_str, temprorary_name)
+								break;
+						}
+					}
+				});
+			});
+
+			function accountStoragerInnerFunction(temporary_id, temporary_str, temprorary_name) {
+				var innerHtml = "";
+				innerHtml += '<' + temporary_str + '';
+				innerHtml += ' ' + temporary_str + '_id="' + temporary_id + '"';
+				innerHtml += ' ' + temporary_str + '_name="' + temprorary_name + '"';
+				innerHtml += ' ' + temporary_str + '_quantity="0"';
+				innerHtml += ' ' + temporary_str + '_type="0"';
+				innerHtml += '></' + temporary_str + '>';
+				$('div[' + temporary_str + ']').append(innerHtml);
 			}
 		</script>
 	</head>
 
 	<body class="mdui-appbar-with-toolbar mdui-appbar-with-tab">
-		<input id="onclickTest" />
-		<button id="xxxx" onclick="addAccountStorager(this)">zzz</button>
 		<div class="mdui-appbar mdui-appbar-fixed">
 			<div class="mdui-toolbar mdui-color-indigo">
 				<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe5d2;</i></a>
@@ -37,7 +55,7 @@
 			</div>
 			<div class="mdui-tab mdui-color-indigo" mdui-tab>
 				<a href="#tab1" class="mdui-ripple mdui-ripple-white">web</a>
-				<a href="#tab2" class="mdui-ripple mdui-ripple-white">shopping</a>
+				<a href="#tab2" class="mdui-ripple mdui-ripple-white">Storager</a>
 				<a href="#tab3" class="mdui-ripple mdui-ripple-white">videos</a>
 			</div>
 		</div>
@@ -95,28 +113,18 @@
 					<button class="mdui-textfield-icon mdui-btn mdui-btn-icon">
 						<i class="mdui-icon material-icons">&#xe145;</i>
 					</button>
-					<input input_name="storager" class="mdui-textfield-input" type="text" placeholder="add" />
+					<input enter_submit="account_storager" class="mdui-textfield-input" type="text" placeholder="add" />
 					<button class="mdui-textfield-close mdui-btn mdui-btn-icon">
 						<i class="mdui-icon material-icons">&#xe5cd;</i>
 					</button>
 				</div>
 				<ul class="mdui-list">
-					<li class="mdui-list-item mdui-ripple">
-						<i class="mdui-list-item-icon mdui-icon material-icons">&#xe168;</i>
-						<div class="mdui-list-item-content">Inbox</div>
-					</li>
-					<li class="mdui-list-item mdui-ripple">
-						<i class="mdui-list-item-icon mdui-icon material-icons">&#xe163;</i>
-						<div class="mdui-list-item-content">Outbox</div>
-					</li>
-					<li class="mdui-list-item mdui-ripple">
-						<i class="mdui-list-item-icon mdui-icon material-icons">&#xe872;</i>
-						<div class="mdui-list-item-content">Trash</div>
-					</li>
-					<li class="mdui-list-item mdui-ripple">
-						<i class="mdui-list-item-icon mdui-icon material-icons">&#xe000;</i>
-						<div class="mdui-list-item-content">Spam</div>
-					</li>
+					<li class="mdui-subheader">Property</li>
+					<li class="mdui-list-item mdui-ripple">Alipay</li>
+					<li class="mdui-list-item mdui-ripple">WechatSwallet</li>
+					<li class="mdui-subheader">Debt</li>
+					<li class="mdui-list-item mdui-ripple">CridetCard</li>
+					<li class="mdui-list-item mdui-ripple">Arearage</li>
 				</ul>
 			</div>
 
@@ -179,11 +187,11 @@
         			storager_quantity     : 载体存储数量
         			storager_type         : 载体种类(0:资产;1:负债)
         -->
-        <div id="data_storager">
-        	<div id="account_storager">
-        		<!--<storager storager_id="0" storager_name="储蓄卡" storager_quantity="0" storager_type="0"></storager>-->
-        	</div>
-        </div>
+		<div id="data_storager">
+			<div account_storager>
+				<!--<storager storager_id="0" storager_name="储蓄卡" storager_quantity="0" storager_type="0"></storager>-->
+			</div>
+		</div>
 	</body>
 
 </html>
